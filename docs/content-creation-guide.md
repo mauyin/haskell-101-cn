@@ -43,25 +43,35 @@ haskell-101-cn/
 │   └── appendix/
 │       └── teaching-guide.md
 │
-├── week-00-setup/                 # 实际的练习文件（供下载）
-│   ├── exercises/
-│   │   ├── exercise-01-hello.hs  # 可下载的 Haskell 文件
-│   │   ├── exercise-02-ghci.md
-│   │   └── solutions/             # 参考答案
-│   └── resources/                 # 其他资源
-│
-├── week-01-basics/                # 同样保留练习文件
-│   └── exercises/
-└── ...
+├── exercises/                     # 所有练习文件集中存放
+│   ├── week-00/
+│   │   ├── tasks/                 # 练习题（学生下载）
+│   │   │   ├── exercise-01-hello.hs
+│   │   │   └── exercise-02-ghci.md
+│   │   ├── solutions/             # 参考答案
+│   │   │   ├── exercise-01-hello.hs
+│   │   │   └── exercise-02-ghci.md
+│   │   └── examples/              # 额外示例（可选）
+│   ├── week-01/
+│   │   ├── tasks/
+│   │   ├── solutions/
+│   │   └── examples/
+│   └── ...
+└── docs/
+    └── ...
 ```
 
 ### 关键原则
 
 1. **mdbook 内容在 `src/` 目录** - 这是 mdbook 编译的源
-2. **练习文件保留在原位置** - 学生可以直接下载使用
-3. **双重用途**：
+2. **练习文件在 `exercises/` 目录** - 按周组织，便于管理
+3. **清晰的分类**：
+   - `tasks/` - 学生下载的练习题
+   - `solutions/` - 参考答案
+   - `examples/` - 额外示例代码（可选）
+4. **双重用途**：
    - `src/` 中的 markdown 用于阅读和浏览
-   - `week-XX/exercises/` 中的文件用于下载和实践
+   - `exercises/` 中的文件用于下载和实践
 
 ---
 
@@ -86,15 +96,19 @@ cd src/week-01-basics/
 #### 步骤 2: 创建实际练习文件
 
 ```bash
-# 在项目根目录创建练习文件夹
-cd ../../week-01-basics/exercises/
+# 在 exercises 目录创建本周文件
+cd exercises/week-01/
 
-# 创建练习文件
-# - exercise-01-functions.hs
-# - exercise-02-lists.hs
-# - solutions/
-#   - exercise-01-functions.hs
-#   - exercise-02-lists.hs
+# 在 tasks/ 创建练习文件
+# - tasks/exercise-01-functions.hs
+# - tasks/exercise-02-lists.hs
+
+# 在 solutions/ 创建参考答案
+# - solutions/exercise-01-functions.hs
+# - solutions/exercise-02-lists.hs
+
+# 可选：在 examples/ 创建示例代码
+# - examples/recursion-demo.hs
 ```
 
 #### 步骤 3: 更新 SUMMARY.md
@@ -196,9 +210,10 @@ add x y = x + y
 
 ## 📥 下载练习文件
 
-- **[练习 1: 标题](../../week-0X-xxx/exercises/exercise-01.hs)** - 下载链接
-- **[练习 2: 标题](../../week-0X-xxx/exercises/exercise-02.hs)** - 下载链接
-- **[参考答案](../../week-0X-xxx/exercises/solutions/)** - 完成后查看
+- **[练习 1: 标题](../../exercises/week-01/tasks/exercise-01.hs)** - 下载链接
+- **[练习 2: 标题](../../exercises/week-01/tasks/exercise-02.hs)** - 下载链接
+- **[参考答案](../../exercises/week-01/solutions/)** - 完成后查看
+- **[示例代码](../../exercises/week-01/examples/)** - 额外学习材料
 
 ---
 
@@ -322,7 +337,9 @@ ghci> :type "hello"
 
 ```markdown
 <!-- 链接到仓库中的实际文件 -->
-下载 [exercise-01.hs](../../week-01-basics/exercises/exercise-01.hs)
+下载 [exercise-01.hs](../../exercises/week-01/tasks/exercise-01.hs)
+查看 [参考答案](../../exercises/week-01/solutions/exercise-01.hs)
+参考 [示例代码](../../exercises/week-01/examples/demo.hs)
 ```
 
 ### 列表

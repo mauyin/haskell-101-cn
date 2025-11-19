@@ -8,9 +8,9 @@
 
 你可以直接在仓库中找到并下载这些练习文件：
 
-- **[练习 1: Hello Haskell](../../week-00-setup/exercises/exercise-01-hello.hs)** - `.hs` 文件，可下载编辑
-- **[练习 2: GHCi 操作](../../week-00-setup/exercises/exercise-02-ghci.md)** - 交互式练习指南
-- **[参考答案](../../week-00-setup/exercises/solutions/)** - 完成练习后查看
+- **[练习 1: Hello Haskell](../../exercises/week-00/tasks/exercise-01-hello.hs)** - `.hs` 文件，可下载编辑
+- **[练习 2: GHCi 操作](../../exercises/week-00/tasks/exercise-02-ghci.md)** - 交互式练习指南
+- **[参考答案](../../exercises/week-00/solutions/)** - 完成练习后查看
 
 ---
 
@@ -27,14 +27,14 @@
 
 ### 如何完成
 
-1. 从仓库下载 `week-00-setup/exercises/exercise-01-hello.hs`
+1. 从仓库下载 `exercises/week-00/tasks/exercise-01-hello.hs`
 2. 在文件中完成函数实现（替换 `undefined`）
 3. 在 GHCi 中加载文件：
    ```bash
    ghci> :load exercise-01-hello.hs
    ```
 4. 测试你的函数
-5. 对照 `solutions/` 目录中的参考答案
+5. 对照 `exercises/week-00/solutions/` 目录中的参考答案
 
 ### 练习内容预览
 
@@ -180,7 +180,7 @@ ghci> :browse Prelude -- 浏览模块
 ## 需要帮助？
 
 - 参考本章的 [详细讲义](lecture.md)
-- 查看 `week-00-setup/exercises/solutions/` 中的参考答案
+- 查看 `exercises/week-00/solutions/` 中的参考答案
 - 在 GitHub Issues 中提问
 
 ---

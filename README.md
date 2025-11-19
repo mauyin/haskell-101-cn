@@ -108,14 +108,15 @@ cabal --version    # 应显示 Cabal 3.12.x 或更高
 
 #### 4. 下载练习文件
 
-所有练习文件都在 `week-XX/exercises/` 目录中，可直接下载使用：
+所有练习文件都在 `exercises/` 目录中，按周组织：
 
 ```bash
-cd week-00-setup/exercises
+cd exercises/week-00/tasks
 ls
 # exercise-01-hello.hs
 # exercise-02-ghci.md
-# solutions/
+
+cd ../solutions  # 参考答案
 ```
 
 详细安装指南请参考课程中的 Week 0 环境搭建章节。
@@ -210,8 +211,11 @@ haskell-101-cn/
 │   ├── SUMMARY.md         # 目录结构
 │   ├── README.md          # 课程首页
 │   └── week-XX/           # 各周内容
-├── week-XX/               # 练习文件（供下载）
-│   └── exercises/         # 实际的 .hs 文件
+├── exercises/             # 练习文件（供下载）
+│   └── week-XX/
+│       ├── tasks/         # 练习题
+│       ├── solutions/     # 参考答案
+│       └── examples/      # 示例代码
 └── docs/                  # 文档
     ├── teaching-guide.md
     └── content-creation-guide.md
