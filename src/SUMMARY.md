@@ -62,5 +62,6 @@
 
 # 附录
 
-- [教学指南](appendix/teaching-guide.md)
+<!-- Teaching guide moved to docs/ - only for instructors -->
+<!-- Self-learners: All study tips are integrated into each week's content -->
 

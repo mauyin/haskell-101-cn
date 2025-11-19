@@ -181,9 +181,36 @@ ghci> :browse Prelude -- 浏览模块
 
 - 参考本章的 [详细讲义](lecture.md)
 - 查看 `exercises/week-00/solutions/` 中的参考答案
-- 在 GitHub Issues 中提问
+- 在 [GitHub Issues](https://github.com/mauyin/haskell-101-cn/issues) 中提问
+- 在 [Stack Overflow](https://stackoverflow.com/questions/tagged/haskell) 搜索相关问题
+
+## 💡 自学建议
+
+### 完成这些练习后，你应该能够：
+
+- ✅ 在 GHCi 中测试简单的 Haskell 表达式
+- ✅ 理解基本的类型签名
+- ✅ 编写和运行简单的 Haskell 函数
+- ✅ 使用 `:type`、`:load` 等 GHCi 命令
+
+### 如果觉得困难
+
+**这很正常！** Haskell 的思维方式可能和你之前学习的语言完全不同。建议：
+
+1. **多看几遍讲义** - 第一遍不理解很正常
+2. **在 GHCi 中多实验** - 改变代码，观察结果
+3. **不要纠结细节** - 有些概念会在后面的章节中逐渐清晰
+4. **给自己时间** - 函数式编程需要时间适应
+
+### 准备好了吗？
+
+如果你完成了至少 80% 的练习，就可以进入 Week 1 了！
+
+即使有些练习没有完全理解也没关系，Week 1 会重新讲解这些基础概念。
 
 ---
 
 **完成练习后，你就准备好进入 Week 1 了！** 🎉
+
+**下一步：** [Week 1 - Haskell 基础语法](../week-01-basics/README.md) →
 
