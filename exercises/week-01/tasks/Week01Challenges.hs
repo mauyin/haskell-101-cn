@@ -6,10 +6,16 @@ Week 1 - 挑战题: Haskell 进阶练习
 
 难度：⭐⭐⭐⭐☆
 
-提示：
+⚠️ **重要提示**：
+- 某些题目使用了 Week 2 及以后才会学习的概念（如 Maybe、IO）
+- 如果遇到不熟悉的类型，可以先跳过，等学完相应章节再回来做
+- 建议顺序：先做挑战 1-5，挑战 6-8 可以等学完 Week 2/4 再做
+
+学习建议：
 - 不要急着看答案，多思考
 - 可以先用递归实现，再尝试高阶函数
 - 测试边界情况（空列表、负数等）
+- 在 GHCi 中逐步测试你的想法
 -}
 
 module Week01Challenges where
@@ -147,6 +153,9 @@ encode xs = undefined  -- TODO
 {- | 生成数字金字塔
 打印一个数字金字塔
 
+⚠️ **Week 4 内容**：这题使用 IO 类型（Week 4 才会学习）
+建议先做 pyramidString，或者等学完 Week 4 再回来做这题。
+
 示例：
   pyramid 5 应该打印：
       1
@@ -157,6 +166,7 @@ encode xs = undefined  -- TODO
 -}
 pyramid :: Int -> IO ()
 pyramid n = undefined  -- TODO
+-- 提示：可以先实现 pyramidString，然后用 putStrLn 打印
 
 
 {- | 生成数字金字塔字符串（不打印）
@@ -191,12 +201,21 @@ maxSubArraySum xs = undefined  -- TODO
 {- | 在有序列表中进行二分查找
 返回 Just index 如果找到，否则返回 Nothing
 
-示例：
+⚠️ **Week 2 内容**：这题使用 Maybe 类型（Week 2 才会学习）
+
+Week 1 友好版本：可以先实现这个简化版：
+  binarySearchBool :: Ord a => a -> [a] -> Bool
+  binarySearchBool x xs = undefined
+  -- 返回 True 如果找到，False 否则
+
+示例（Maybe 版本）：
   binarySearch 5 [1,2,3,4,5,6,7]  应该返回 Just 4
   binarySearch 8 [1,2,3,4,5,6,7]  应该返回 Nothing
 -}
 binarySearch :: Ord a => a -> [a] -> Maybe Int
 binarySearch x xs = undefined  -- TODO
+-- 提示：二分查找需要比较中间元素
+-- 如果相等，找到了；如果小于，搜索左半部分；如果大于，搜索右半部分
 
 
 -- ============================================================================

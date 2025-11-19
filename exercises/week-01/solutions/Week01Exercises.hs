@@ -138,10 +138,16 @@ customTransform xs = map (\x -> if even x then x `div` 2 else x * 3) xs
 
 
 joinWithSpaces :: [String] -> String
-joinWithSpaces [] = ""
-joinWithSpaces [x] = x
-joinWithSpaces (x:xs) = foldr (\s acc -> s ++ " " ++ acc) (last xs) (x : init xs)
--- 更简单的方法：joinWithSpaces xs = unwords xs
+joinWithSpaces xs = unwords xs
+
+-- 解释：
+-- unwords 是 Prelude 提供的标准函数，专门用于用空格连接字符串列表
+-- 它的实现更高效，应该优先使用
+--
+-- 如果要用 foldr 教学，可以这样实现（但不推荐）：
+-- joinWithSpaces [] = ""
+-- joinWithSpaces [x] = x
+-- joinWithSpaces (x:xs) = x ++ " " ++ joinWithSpaces xs
 
 
 removeEvens :: [Int] -> [Int]

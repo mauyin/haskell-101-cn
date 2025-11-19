@@ -121,7 +121,7 @@ pyramidString n = unlines [spaces i ++ numbers i | i <- [1..n]]
 
 maxSubArraySum :: [Int] -> Int
 maxSubArraySum [] = 0
-maxSubArraySum xs = maximum $ scanl (\acc x -> max x (acc + x)) 0 xs
+maxSubArraySum (x:xs) = maximum $ scanl (\acc y -> max y (acc + y)) x xs
 
 -- Kadane's 算法的直接实现
 maxSubArraySumKadane :: [Int] -> Int

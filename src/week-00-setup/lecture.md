@@ -87,7 +87,7 @@ haskell-language-server-wrapper --version
 
 ### 🔧 推荐 GHC 版本
 
-本课程推荐使用 **GHC 9.10.x** 或更高版本。查看当前版本：
+本课程推荐使用 **GHC 9.12.x 或更高版本**（当前稳定版本为 9.12.2）。查看当前版本：
 
 ```bash
 ghc --version
@@ -99,11 +99,11 @@ ghc --version
 # 列出可用的 GHC 版本
 ghcup list
 
-# 安装特定版本（例如 9.10.1）
-ghcup install ghc 9.10.1
+# 安装特定版本（例如 9.12.2）
+ghcup install ghc 9.12.2
 
 # 设置为默认版本
-ghcup set ghc 9.10.1
+ghcup set ghc 9.12.2
 ```
 
 ## 2. 配置 Cabal
@@ -462,7 +462,7 @@ del Main.hi Main.o Main.exe  # Windows
 ghcup list
 
 # 切换到推荐版本
-ghcup set ghc 9.10.1
+ghcup set ghc 9.12.2
 
 # 验证
 ghc --version
@@ -484,8 +484,8 @@ ghc --version
 
 现在完成本周的练习：
 
-- [练习 1: Hello Haskell](exercises/exercise-01-hello.hs)
-- [练习 2: GHCi 操作](exercises/exercise-02-ghci.md)
+- [练习 1: Hello Haskell](../../exercises/week-00/tasks/exercise-01-hello.hs)
+- [练习 2: GHCi 操作](../../exercises/week-00/tasks/exercise-02-ghci.md)
 
 完成后，准备进入 [Week 1: Haskell 基础语法](../week-01-basics/)！
 
