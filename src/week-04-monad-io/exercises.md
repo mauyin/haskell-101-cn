@@ -446,11 +446,20 @@ add x y = x + y
 - [ ] 组合纯函数和 IO 操作
 - [ ] 构建完整的命令行工具
 
+**全部完成？** 恭喜！你已经掌握了 Monad 和 IO 编程的核心知识！
+
+继续前进：[Week 5: 模块与项目管理](../../week-05-modules/README.md) →
+
 ---
 
-**准备好了吗？** 下载练习文件开始编码！
+## 📚 参考答案
 
-完成练习后，可以查看[参考答案](../../exercises/week-04/solutions/)对比学习。
+完成练习后，可以查看参考答案：
+
+- [Week04Exercises.hs 答案](../../exercises/week-04/solutions/Week04Exercises.hs)
+- [Week04Challenges.hs 答案](../../exercises/week-04/solutions/Week04Challenges.hs)
+
+**重要**：先独立完成练习，再查看答案！只有自己动手写代码才能真正掌握。
 
 有问题？查看 [README](README.md) 中的社区资源，或在 [Issues](https://github.com/mauyin/haskell-101-cn/issues) 提问。
 
