@@ -1,0 +1,32 @@
+# mdbook build output
+book/
+
+# Haskell
+dist-newstyle/
+.stack-work/
+*.hi
+*.o
+*.chi
+*.chs.h
+.virtualenv
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+cabal.project.local
+.HTF/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+
