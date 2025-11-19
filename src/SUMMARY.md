@@ -15,6 +15,8 @@
 # Week 1: Haskell 基础语法
 
 - [概述](week-01-basics/README.md)
+- [详细讲义](week-01-basics/lecture.md)
+- [练习作业](week-01-basics/exercises.md)
 
 ---
 
