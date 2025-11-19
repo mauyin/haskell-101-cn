@@ -25,17 +25,74 @@
 
 ## 📅 课程大纲
 
-| 周次 | 主题                  | 主要内容                                           | 练习 / 动手任务                                      |
-|------|-----------------------|----------------------------------------------------|-----------------------------------------------------|
-| [Week 0](week-00-setup/README.md) | 环境搭建              | GHCup、VS Code + Haskell 扩展、GHCi 入门          | 安装验证 + "Hello, Cardano!"                        |
-| Week 1 | Haskell 基础语法      | 函数、类型、列表、递归、高阶函数、lambda           | 列表处理（map/filter/foldr）                        |
-| Week 2 | 数据类型与模式匹配    | 元组、ADT、记录、case 表达式                       | 自定义 Tree、Result 类型练习                        |
-| Week 3 | 类型类                | Eq/Ord/Show/Functor/Applicative/Monad、deriving    | 实现自定义实例 + foldable 实例                       |
-| Week 4 | Monad 与 IO           | do 记法、纯函数与副作用、文件/网络 IO              | 猜数字游戏 + 简单命令行 TODO                        |
-| Week 5 | 模块与项目管理        | Cabal 项目、常用库（aeson、bytestring、req）      | 天气查询工具 + JSON 解析程序                        |
-| Week 6 | 错误处理与测试        | Maybe/Either/ExceptT、QuickCheck                   | 带错误处理程序 + 属性测试                           |
-| Week 7 | Cardano 简介 + Haskell 实践 | Cardano 为什么选 Haskell、eUTxO 模型、cardano-api | • 用 aeson 解析真实交易 JSON<br>• 用 cardano-api 构建并签名简单转账交易<br>• 用 req + Blockfrost 查询地址余额 |
-| Week 8 | 结课项目              | 综合项目（命令行 Cardano 工具）                    | 独立完成余额监控器或交易构建器并展示                |
+<div style="overflow-x: auto;">
+<table>
+<thead>
+<tr>
+<th style="text-align: center; white-space: nowrap;">周次</th>
+<th>主题</th>
+<th>主要内容</th>
+<th>练习 / 动手任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center; white-space: nowrap;"><a href="week-00-setup/">Week 0</a></td>
+<td>环境搭建</td>
+<td>GHCup、VS Code + Haskell 扩展、GHCi 入门</td>
+<td>安装验证 + "Hello, Cardano!"</td>
+</tr>
+<tr>
+<td style="text-align: center; white-space: nowrap;"><a href="week-01-basics/">Week 1</a></td>
+<td>Haskell 基础语法</td>
+<td>函数、类型、列表、递归、高阶函数、lambda</td>
+<td>列表处理（map/filter/foldr）</td>
+</tr>
+<tr>
+<td style="text-align: center; white-space: nowrap;"><a href="week-02-datatypes/">Week 2</a></td>
+<td>数据类型与模式匹配</td>
+<td>元组、ADT、记录、case 表达式</td>
+<td>自定义 Tree、Result 类型练习</td>
+</tr>
+<tr>
+<td style="text-align: center; white-space: nowrap;">Week 3</td>
+<td>类型类</td>
+<td>Eq/Ord/Show/Functor/Applicative/Monad、deriving</td>
+<td>实现自定义实例 + foldable 实例</td>
+</tr>
+<tr>
+<td style="text-align: center; white-space: nowrap;">Week 4</td>
+<td>Monad 与 IO</td>
+<td>do 记法、纯函数与副作用、文件/网络 IO</td>
+<td>猜数字游戏 + 简单命令行 TODO</td>
+</tr>
+<tr>
+<td style="text-align: center; white-space: nowrap;">Week 5</td>
+<td>模块与项目管理</td>
+<td>Cabal 项目、常用库（aeson、bytestring、req）</td>
+<td>天气查询工具 + JSON 解析程序</td>
+</tr>
+<tr>
+<td style="text-align: center; white-space: nowrap;">Week 6</td>
+<td>错误处理与测试</td>
+<td>Maybe/Either/ExceptT、QuickCheck</td>
+<td>带错误处理程序 + 属性测试</td>
+</tr>
+<tr>
+<td style="text-align: center; white-space: nowrap;">Week 7</td>
+<td>Cardano 简介 + Haskell 实践</td>
+<td>Cardano 为什么选 Haskell、eUTxO 模型、cardano-api</td>
+<td>• 用 aeson 解析真实交易 JSON<br>• 用 cardano-api 构建并签名简单转账交易<br>• 用 req + Blockfrost 查询地址余额</td>
+</tr>
+<tr>
+<td style="text-align: center; white-space: nowrap;">Week 8</td>
+<td>结课项目</td>
+<td>综合项目（命令行 Cardano 工具）</td>
+<td>独立完成余额监控器或交易构建器并展示</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 ## 🛠️ 所需工具（全部免费）
 
