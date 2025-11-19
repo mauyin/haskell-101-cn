@@ -10,22 +10,24 @@ data Expr = Num Int | Add Expr Expr | Sub Expr Expr | Mul Expr Expr | Div Expr E
 
 eval :: Expr -> Either String Int
 eval (Num n) = Right n
-eval (Add e1 e2) = do
-  v1 <- eval e1
-  v2 <- eval e2
-  return (v1 + v2)
-eval (Sub e1 e2) = do
-  v1 <- eval e1
-  v2 <- eval e2
-  return (v1 - v2)
-eval (Mul e1 e2) = do
-  v1 <- eval e1
-  v2 <- eval e2
-  return (v1 * v2)
-eval (Div e1 e2) = do
-  v1 <- eval e1
-  v2 <- eval e2
-  if v2 == 0 then Left "Division by zero" else Right (v1 `div` v2)
+eval (Add e1 e2) = case (eval e1, eval e2) of
+  (Right v1, Right v2) -> Right (v1 + v2)
+  (Left err, _) -> Left err
+  (_, Left err) -> Left err
+eval (Sub e1 e2) = case (eval e1, eval e2) of
+  (Right v1, Right v2) -> Right (v1 - v2)
+  (Left err, _) -> Left err
+  (_, Left err) -> Left err
+eval (Mul e1 e2) = case (eval e1, eval e2) of
+  (Right v1, Right v2) -> Right (v1 * v2)
+  (Left err, _) -> Left err
+  (_, Left err) -> Left err
+eval (Div e1 e2) = case (eval e1, eval e2) of
+  (Right v1, Right v2) -> if v2 == 0 
+                          then Left "Division by zero" 
+                          else Right (v1 `div` v2)
+  (Left err, _) -> Left err
+  (_, Left err) -> Left err
 
 -- 挑战 2: JSON
 data JSON = JNull | JBool Bool | JNumber Double | JString String | JArray [JSON] | JObject [(String, JSON)]

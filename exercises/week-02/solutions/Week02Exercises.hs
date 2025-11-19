@@ -5,6 +5,8 @@ Week 2 - 练习作业参考答案
 
 module Week02Exercises where
 
+import Data.Char (isDigit)
+
 -- 练习 1: 元组
 makePoint :: Int -> Int -> (Int, Int)
 makePoint x y = (x, y)
@@ -89,9 +91,9 @@ divideWithError x y = Right (x `div` y)
 
 parseInt :: String -> Either String Int
 parseInt "" = Left "Empty string"
-parseInt str = case reads str of
-  [(n, "")] -> Right n
-  _ -> Left ("Not a number: " ++ str)
+parseInt str
+  | all isDigit str = Right (read str)
+  | otherwise = Left ("Not a number: " ++ str)
 
 validateAge :: Int -> Either String Int
 validateAge age
