@@ -23,6 +23,8 @@
 # Week 2: 数据类型与模式匹配
 
 - [概述](week-02-datatypes/README.md)
+- [详细讲义](week-02-datatypes/lecture.md)
+- [练习作业](week-02-datatypes/exercises.md)
 
 ---
 
