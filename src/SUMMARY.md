@@ -17,8 +17,12 @@
   - [练习作业](week-02-datatypes/exercises.md)
 
 - [Week 3: 类型类](week-03-typeclasses/README.md)
+  - [详细讲义](week-03-typeclasses/lecture.md)
+  - [练习作业](week-03-typeclasses/exercises.md)
 
 - [Week 4: Monad 与 IO](week-04-monad-io/README.md)
+  - [详细讲义](week-04-monad-io/lecture.md)
+  - [练习作业](week-04-monad-io/exercises.md)
 
 - [Week 5: 模块与项目管理](week-05-modules/README.md)
 
