@@ -43,49 +43,49 @@
 <td>安装验证 + "Hello, Cardano!"</td>
 </tr>
 <tr>
-<td style="text-align: center; white-space: nowrap;"><a href="week-01-basics/">Week 1</a></td>
+<td style="text-align: center; white-space: nowrap;"><a href="./src/week-01-basics/">Week 1</a></td>
 <td>Haskell 基础语法</td>
 <td>函数、类型、列表、递归、高阶函数、lambda</td>
 <td>列表处理（map/filter/foldr）</td>
 </tr>
 <tr>
-<td style="text-align: center; white-space: nowrap;"><a href="week-02-datatypes/">Week 2</a></td>
+<td style="text-align: center; white-space: nowrap;"><a href="./src/week-02-datatypes/">Week 2</a></td>
 <td>数据类型与模式匹配</td>
 <td>元组、ADT、记录、case 表达式</td>
 <td>自定义 Tree、Result 类型练习</td>
 </tr>
 <tr>
-<td style="text-align: center; white-space: nowrap;"><a href="week-03-typeclasses/">Week 3</a></td>
+<td style="text-align: center; white-space: nowrap;"><a href="./src/week-03-typeclasses/">Week 3</a></td>
 <td>类型类</td>
 <td>Eq/Ord/Show/Functor/Applicative/Monad、deriving</td>
 <td>实现自定义实例 + foldable 实例</td>
 </tr>
 <tr>
-<td style="text-align: center; white-space: nowrap;"><a href="week-04-monad-io/">Week 4</a></td>
+<td style="text-align: center; white-space: nowrap;"><a href="./src/week-04-monad-io/">Week 4</a></td>
 <td>Monad 与 IO</td>
 <td>do 记法、纯函数与副作用、文件/网络 IO</td>
 <td>猜数字游戏 + 简单命令行 TODO</td>
 </tr>
 <tr>
-<td style="text-align: center; white-space: nowrap;"><a href="week-05-modules/">Week 5</a></td>
+<td style="text-align: center; white-space: nowrap;"><a href="./src/week-05-modules/">Week 5</a></td>
 <td>模块与项目管理</td>
 <td>Cabal 项目、常用库（aeson、bytestring、req）</td>
 <td>天气查询工具 + JSON 解析程序</td>
 </tr>
 <tr>
-<td style="text-align: center; white-space: nowrap;"><a href="week-06-testing/">Week 6</a></td>
+<td style="text-align: center; white-space: nowrap;"><a href="./src/week-06-testing/">Week 6</a></td>
 <td>错误处理与测试</td>
 <td>Maybe/Either/ExceptT、QuickCheck</td>
 <td>带错误处理程序 + 属性测试</td>
 </tr>
 <tr>
-<td style="text-align: center; white-space: nowrap;"><a href="week-07-cardano/">Week 7</a></td>
+<td style="text-align: center; white-space: nowrap;"><a href="./src/week-07-cardano/">Week 7</a></td>
 <td>Cardano 简介 + Haskell 实践</td>
 <td>Cardano 为什么选 Haskell、eUTxO 模型、cardano-api</td>
 <td>• 用 aeson 解析真实交易 JSON<br>• 用 cardano-api 构建并签名简单转账交易<br>• 用 req + Blockfrost 查询地址余额</td>
 </tr>
 <tr>
-<td style="text-align: center; white-space: nowrap;"><a href="week-08-project/">Week 8</a></td>
+<td style="text-align: center; white-space: nowrap;"><a href="./src/week-08-project/">Week 8</a></td>
 <td>结课项目</td>
 <td>综合项目（命令行 Cardano 工具）</td>
 <td>独立完成余额监控器或交易构建器并展示</td>
