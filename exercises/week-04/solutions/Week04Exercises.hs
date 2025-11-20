@@ -60,6 +60,43 @@ filterMaybe f (x:xs) = do
 
 
 {- ============================================
+   练习 1.6-1.8: Monad 定律验证 (3 题)
+   ============================================ -}
+
+-- Identity Monad 定义
+data Identity a = Identity a
+  deriving (Show, Eq)
+
+instance Functor Identity where
+  fmap f (Identity x) = Identity (f x)
+
+instance Applicative Identity where
+  pure = Identity
+  Identity f <*> Identity x = Identity (f x)
+
+instance Monad Identity where
+  return = Identity
+  Identity x >>= f = f x
+
+-- 1.6 验证左单位元定律: return a >>= f  ≡  f a
+verifyLeftIdentity :: (Eq b, Show b) => a -> (a -> Identity b) -> Bool
+verifyLeftIdentity a f = (return a >>= f) == f a
+
+-- 1.7 验证右单位元定律: m >>= return  ≡  m
+verifyRightIdentity :: Eq a => Identity a -> Bool
+verifyRightIdentity m = (m >>= return) == m
+
+-- 1.8 验证结合律: (m >>= f) >>= g  ≡  m >>= (\x -> f x >>= g)
+verifyAssociativity :: (Eq c, Show c) 
+                    => Identity a 
+                    -> (a -> Identity b) 
+                    -> (b -> Identity c) 
+                    -> Bool
+verifyAssociativity m f g = 
+  ((m >>= f) >>= g) == (m >>= (\x -> f x >>= g))
+
+
+{- ============================================
    练习 2: Maybe Monad 实战 (5 题)
    ============================================ -}
 
@@ -386,9 +423,35 @@ loadTodos path = do
       return (read content :: [Todo])
     else return []
   where
-    -- 简化版：假设文件存在性检查
+    {- ⚠️ 重要提示：文件存在性检查的简化实现
+    
+    这是一个简化版的 doesFileExist 实现，用于教学目的。
+    
+    局限性：
+    - 总是返回 True，不做实际的文件存在性检查
+    - 如果文件不存在，readFile 会抛出异常
+    
+    生产环境的正确做法：
+    
+    1. 使用 System.Directory 模块：
+       import System.Directory (doesFileExist)
+    
+    2. 或使用异常处理：
+       import Control.Exception (try, IOException)
+       
+       safeLoadTodos :: FilePath -> IO [Todo]
+       safeLoadTodos path = do
+         result <- try (readFile path) :: IO (Either IOException String)
+         case result of
+           Left _  -> return []  -- 文件不存在或读取失败
+           Right content -> return (read content :: [Todo])
+    
+    学习建议：
+    - 完成 Week 5 后，回来改进这个实现
+    - 尝试添加 System.Directory 依赖并使用真正的 doesFileExist
+    -}
     doesFileExist :: FilePath -> IO Bool
-    doesFileExist _ = return True  -- 实际应使用 System.Directory
+    doesFileExist _ = return True  -- 简化实现，仅用于教学
 
 -- 1.2 保存 TODO 列表
 saveTodos :: FilePath -> [Todo] -> IO ()
@@ -546,7 +609,64 @@ showFileContent path = do
    测试辅助函数
    ============================================ -}
 
--- 测试 Maybe 函数
+-- 测试计数器类型
+data TestResult = TestResult
+  { passed :: Int
+  , failed :: Int
+  } deriving (Show)
+
+-- 初始测试结果
+emptyResult :: TestResult
+emptyResult = TestResult 0 0
+
+-- 更新测试结果
+updateResult :: Bool -> TestResult -> TestResult
+updateResult True  (TestResult p f) = TestResult (p + 1) f
+updateResult False (TestResult p f) = TestResult p (f + 1)
+
+-- 测试 Maybe 函数（带计数器）
+testMaybeWith :: (Show a, Eq a) => String -> Maybe a -> Maybe a -> IO TestResult -> IO TestResult
+testMaybeWith name expected actual resultIO = do
+  result <- resultIO
+  let success = expected == actual
+  if success
+    then putStrLn $ "✓ " ++ name
+    else putStrLn $ "✗ " ++ name ++ ": expected " ++ show expected 
+                    ++ ", got " ++ show actual
+  return (updateResult success result)
+
+-- 测试 Either 函数（带计数器）
+testEitherWith :: (Show a, Eq a, Show e, Eq e) 
+               => String -> Either e a -> Either e a -> IO TestResult -> IO TestResult
+testEitherWith name expected actual resultIO = do
+  result <- resultIO
+  let success = expected == actual
+  if success
+    then putStrLn $ "✓ " ++ name
+    else putStrLn $ "✗ " ++ name ++ ": expected " ++ show expected 
+                    ++ ", got " ++ show actual
+  return (updateResult success result)
+
+-- 测试布尔值（带计数器）
+testBool :: String -> Bool -> IO TestResult -> IO TestResult
+testBool name condition resultIO = do
+  result <- resultIO
+  if condition
+    then putStrLn $ "✓ " ++ name
+    else putStrLn $ "✗ " ++ name
+  return (updateResult condition result)
+
+-- 测试 IO 操作（带计数器）
+testIO :: String -> IO Bool -> IO TestResult -> IO TestResult
+testIO name action resultIO = do
+  result <- resultIO
+  success <- action
+  if success
+    then putStrLn $ "✓ " ++ name
+    else putStrLn $ "✗ " ++ name
+  return (updateResult success result)
+
+-- 旧版测试函数（向后兼容）
 testMaybe :: (Show a, Eq a) => String -> Maybe a -> Maybe a -> IO ()
 testMaybe name expected actual =
   if expected == actual
@@ -563,34 +683,50 @@ testEither name expected actual =
     else putStrLn $ "✗ " ++ name ++ ": expected " ++ show expected 
                     ++ ", got " ++ show actual
 
--- 运行所有测试
+-- 运行所有测试（带计数器）
 runTests :: IO ()
 runTests = do
   putStrLn "=== Running Tests ==="
   
+  -- Monad 基础测试
   putStrLn "\n--- Monad Basics ---"
-  testMaybe "chainOps (Just 5)" (Just 30) (chainOps (Just 5))
-  testMaybe "chainOps Nothing" Nothing (chainOps Nothing)
-  testMaybe "addThreeBind (Just 10)" (Just 13) (addThreeBind (Just 10))
-  testMaybe "sequenceMaybe [Just 1, Just 2]" (Just [1,2]) (sequenceMaybe [Just 1, Just 2])
-  testMaybe "sequenceMaybe [Just 1, Nothing]" Nothing (sequenceMaybe [Just 1, Nothing])
+  result <- return emptyResult
+    >>= testMaybeWith "chainOps (Just 5)" (Just 30) (chainOps (Just 5))
+    >>= testMaybeWith "chainOps Nothing" Nothing (chainOps Nothing)
+    >>= testMaybeWith "addThreeBind (Just 10)" (Just 13) (addThreeBind (Just 10))
+    >>= testMaybeWith "sequenceMaybe [Just 1, Just 2]" (Just [1,2]) (sequenceMaybe [Just 1, Just 2])
+    >>= testMaybeWith "sequenceMaybe [Just 1, Nothing]" Nothing (sequenceMaybe [Just 1, Nothing])
   
+  -- Monad 定律测试
+  putStrLn "\n--- Monad Laws ---"
+  let testF x = Identity (x * 2)
+      testG x = Identity (x + 10)
+  result2 <- return result
+    >>= testBool "Left Identity Law" (verifyLeftIdentity 5 testF)
+    >>= testBool "Right Identity Law" (verifyRightIdentity (Identity 42))
+    >>= testBool "Associativity Law" (verifyAssociativity (Identity 5) testF testG)
+  
+  -- Maybe 操作测试
   putStrLn "\n--- Maybe Operations ---"
-  testMaybe "safeDivide 10 2" (Just 5.0) (safeDivide 10 2)
-  testMaybe "safeDivide 10 0" Nothing (safeDivide 10 0)
-  testMaybe "safeSqrt 16" (Just 4.0) (safeSqrt 16)
-  testMaybe "safeSqrt (-4)" Nothing (safeSqrt (-4))
-  testMaybe "safeCompute 16 4" (Just 2.0) (safeCompute 16 4)
+  result3 <- return result2
+    >>= testMaybeWith "safeDivide 10 2" (Just 5.0) (safeDivide 10 2)
+    >>= testMaybeWith "safeDivide 10 0" Nothing (safeDivide 10 0)
+    >>= testMaybeWith "safeSqrt 16" (Just 4.0) (safeSqrt 16)
+    >>= testMaybeWith "safeSqrt (-4)" Nothing (safeSqrt (-4))
+    >>= testMaybeWith "safeCompute 16 4" (Just 2.0) (safeCompute 16 4)
   
   let dict = [("a", 10), ("b", 20), ("c", 30)]
-  testMaybe "lookupAndAdd" (Just 30) (lookupAndAdd "a" "b" dict)
+  result4 <- testMaybeWith "lookupAndAdd" (Just 30) (lookupAndAdd "a" "b" dict) (return result3)
   
+  -- Either 操作测试
   putStrLn "\n--- Either Operations ---"
-  testEither "safeDivideE 10 2" (Right 5.0) (safeDivideE 10 2)
-  testEither "safeDivideE 10 0" (Left DivByZero) (safeDivideE 10 0)
-  testEither "parseAge \"25\"" (Right 25) (parseAge "25")
-  testEither "parseAge \"invalid\"" (Left InvalidFormat) (parseAge "invalid")
+  result5 <- return result4
+    >>= testEitherWith "safeDivideE 10 2" (Right 5.0) (safeDivideE 10 2)
+    >>= testEitherWith "safeDivideE 10 0" (Left DivByZero) (safeDivideE 10 0)
+    >>= testEitherWith "parseAge \"25\"" (Right 25) (parseAge "25")
+    >>= testEitherWith "parseAge \"invalid\"" (Left InvalidFormat) (parseAge "invalid")
   
+  -- List Monad 测试（非计数）
   putStrLn "\n--- List Monad ---"
   putStrLn "pairs [1,2] [3,4]:"
   print $ pairs [1,2] [3,4]
@@ -599,7 +735,58 @@ runTests = do
   putStrLn "moveKnight (5,5):"
   print $ moveKnight (5,5)
   
+  -- IO 操作测试
+  putStrLn "\n--- IO Operations ---"
+  result6 <- return result5
+    >>= testIO "countFileLines" testCountFileLines
+    >>= testIO "reverseFile" testReverseFile
+  
+  -- 显示测试摘要
+  let total = passed result6 + failed result6
+  putStrLn $ "\n=== Test Summary ==="
+  putStrLn $ "Total: " ++ show total ++ " tests"
+  putStrLn $ "Passed: " ++ show (passed result6) ++ " ✓"
+  putStrLn $ "Failed: " ++ show (failed result6) ++ " ✗"
+  putStrLn $ "Success Rate: " ++ show (fromIntegral (passed result6) * 100 / fromIntegral total) ++ "%"
+  
   putStrLn "\nTests complete!"
+
+-- IO 测试辅助函数
+testCountFileLines :: IO Bool
+testCountFileLines = do
+  -- 创建测试文件
+  let testFile = "test_count.txt"
+      testContent = "Line 1\nLine 2\nLine 3\n"
+  writeFile testFile testContent
+  
+  -- 测试
+  count <- countFileLines testFile
+  let expected = 3
+      success = count == expected
+  
+  -- 清理（简化版，实际应确保删除）
+  -- 注意：这里省略文件删除以保持简单
+  
+  return success
+
+testReverseFile :: IO Bool
+testReverseFile = do
+  -- 创建测试文件
+  let inputFile = "test_input.txt"
+      outputFile = "test_output.txt"
+      testContent = "First\nSecond\nThird\n"
+      expected = "Third\nSecond\nFirst\n"
+  
+  writeFile inputFile testContent
+  reverseFile inputFile outputFile
+  
+  -- 验证
+  result <- readFile outputFile
+  let success = result == expected
+  
+  -- 清理（简化版）
+  
+  return success
 
 
 {-

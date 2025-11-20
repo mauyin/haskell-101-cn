@@ -105,6 +105,71 @@ filterMaybe :: (a -> Maybe Bool) -> [a] -> Maybe [a]
 filterMaybe f xs = undefined  -- TODO
 
 
+{- | 1.6 验证 Monad 左单位元定律
+
+Monad 左单位元定律: return a >>= f  ≡  f a
+
+定义一个简单的包装类型 Identity 和它的 Monad 实例，
+然后编写函数验证左单位元定律。
+
+示例：
+  let f x = Identity (x * 2)
+  verifyLeftIdentity 5 f 应该返回 True
+-}
+data Identity a = Identity a
+  deriving (Show, Eq)
+
+instance Functor Identity where
+  fmap f (Identity x) = Identity (f x)
+
+instance Applicative Identity where
+  pure = Identity
+  Identity f <*> Identity x = Identity (f x)
+
+instance Monad Identity where
+  return = Identity
+  Identity x >>= f = f x
+
+-- 验证左单位元定律
+verifyLeftIdentity :: (Eq b, Show b) => a -> (a -> Identity b) -> Bool
+verifyLeftIdentity a f = undefined  -- TODO
+-- 提示：比较 (return a >>= f) 和 (f a) 是否相等
+
+
+{- | 1.7 验证 Monad 右单位元定律
+
+Monad 右单位元定律: m >>= return  ≡  m
+
+编写函数验证右单位元定律。
+
+示例：
+  verifyRightIdentity (Identity 42) 应该返回 True
+-}
+verifyRightIdentity :: Eq a => Identity a -> Bool
+verifyRightIdentity m = undefined  -- TODO
+-- 提示：比较 (m >>= return) 和 m 是否相等
+
+
+{- | 1.8 验证 Monad 结合律
+
+Monad 结合律: (m >>= f) >>= g  ≡  m >>= (\x -> f x >>= g)
+
+编写函数验证结合律。
+
+示例：
+  let f x = Identity (x + 1)
+      g x = Identity (x * 2)
+  verifyAssociativity (Identity 5) f g 应该返回 True
+-}
+verifyAssociativity :: (Eq c, Show c) 
+                    => Identity a 
+                    -> (a -> Identity b) 
+                    -> (b -> Identity c) 
+                    -> Bool
+verifyAssociativity m f g = undefined  -- TODO
+-- 提示：比较 ((m >>= f) >>= g) 和 (m >>= (\x -> f x >>= g)) 是否相等
+
+
 -- ============================================================================
 -- 练习 2: Maybe Monad 实战（5 题）
 -- ============================================================================
@@ -443,6 +508,17 @@ data Todo = Todo { task :: String, done :: Bool }
 -- 1.1 加载 TODO 列表
 loadTodos :: FilePath -> IO [Todo]
 loadTodos path = undefined  -- TODO
+{- 提示：
+1. 使用 readFile 读取文件内容
+2. 使用 read 将字符串解析为 [Todo]
+3. 如果文件不存在，返回空列表
+
+⚠️ 注意：
+简化版可以假设文件总是存在（或使用空文件）。
+完整版需要检查文件存在性：
+  - 使用 System.Directory.doesFileExist
+  - 或使用 Control.Exception.try 处理 IOException
+-}
 
 -- 1.2 保存 TODO 列表
 saveTodos :: FilePath -> [Todo] -> IO ()

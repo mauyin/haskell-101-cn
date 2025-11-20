@@ -349,6 +349,45 @@ searchFiles :: FilePath -> String -> IO [FilePath]
 - 错误处理
 - 实现简单的 API 封装
 
+**⚠️ 特别说明：外部库依赖**
+
+此挑战需要安装额外的 Haskell 包。这是可选练习，适合想要学习实际 HTTP 请求的学生。
+
+**所需库：**
+- `http-conduit` 或 `req` - HTTP 客户端
+- `aeson` - JSON 解析
+
+**安装方式：**
+
+使用 Cabal:
+```bash
+cabal install http-conduit aeson
+```
+
+使用 Stack:
+```bash
+stack install http-conduit aeson
+```
+
+或在项目的 `.cabal` 文件中添加依赖：
+```cabal
+build-depends: base >=4.7 && <5
+             , http-conduit
+             , aeson
+             , text
+             , bytestring
+```
+
+**学习路径：**
+1. 如果你是初学者，可以先跳过此挑战
+2. 完成 Week 5（模块管理）后再回来做
+3. 参考讲义中的 Section 5（网络请求基础）
+4. 查看 `req` 库的官方文档：https://hackage.haskell.org/package/req
+
+**替代方案：**
+- 如果暂时不想配置外部库，可以先完成其他挑战
+- Week 7（Cardano 实践）会更深入地使用外部库
+
 ### 挑战 5: 日志分析工具 ⭐⭐⭐⭐☆
 
 分析日志文件，提取有用信息：
