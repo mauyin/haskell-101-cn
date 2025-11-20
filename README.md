@@ -37,7 +37,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center; white-space: nowrap;"><a href="week-00-setup/">Week 0</a></td>
+<td style="text-align: center; white-space: nowrap;"><a href="./src/week-00-setup/">Week 0</a></td>
 <td>环境搭建</td>
 <td>GHCup、VS Code + Haskell 扩展、GHCi 入门</td>
 <td>安装验证 + "Hello, Cardano!"</td>
