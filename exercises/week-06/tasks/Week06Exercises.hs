@@ -46,7 +46,7 @@ safeIndex = undefined
 -- 1.2 TODO: 安全的除法（返回 Either）
 -- |
 -- 定义错误类型并实现安全除法
-data DivError = DivByZero | Overflow deriving (Show, Eq)
+data DivError = DivByZero | DivOverflow deriving (Show, Eq)
 
 safeDivide :: Int -> Int -> Either DivError Int
 safeDivide = undefined

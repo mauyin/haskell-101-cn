@@ -8,7 +8,9 @@ Error Handling Examples
 
 module ErrorHandlingExamples where
 
+import Control.Monad (when)
 import Control.Monad.Except
+import Control.Monad.IO.Class (liftIO)
 import Control.Exception
 import Data.Typeable
 import GHC.Generics
@@ -192,8 +194,8 @@ exceptTToIO = runExceptT
 -- 使用示例
 example5 :: IO ()
 example5 = do
-  let m1 = Just 42
-  let m2 = Nothing
+  let m1 = Just 42 :: Maybe Int
+  let m2 = Nothing :: Maybe Int
   
   print $ maybeToEither "error" m1  -- Right 42
   print $ maybeToEither "error" m2  -- Left "error"

@@ -12,6 +12,7 @@ import Data.Aeson
 import Data.Aeson.Encode.Pretty (encodePretty)
 import GHC.Generics
 import qualified Data.ByteString.Lazy as BL
+import qualified Data.ByteString.Lazy.Char8 as BLC
 import qualified Data.Text as T
 
 -- ============================================================================
@@ -65,7 +66,7 @@ example2 = do
   
   let emp = Employee "Bob" 25 (Address "123 Main St" "Beijing")
   let json = encodePretty emp
-  BL.putStrLn json
+  BLC.putStrLn json
 
 -- ============================================================================
 -- 示例 3: 列表和 Maybe
@@ -90,7 +91,7 @@ example3 = do
         , leader = Just (Person "Charlie" 35)
         }
   
-  BL.putStrLn $ encodePretty team
+  BLC.putStrLn $ encodePretty team
 
 -- ============================================================================
 -- 示例 4: 自定义字段名
@@ -105,8 +106,8 @@ data Config = Config
 instance FromJSON Config where
   parseJSON = withObject "Config" $ \v -> Config
     <$> v .: "port"
-    <$> v .: "host"
-    <$> v .: "debug"
+    <*> v .: "host"
+    <*> v .: "debug"
 
 instance ToJSON Config where
   toJSON cfg = object
@@ -120,7 +121,7 @@ example4 = do
   putStrLn "\n=== 示例 4: 自定义字段名 ==="
   
   let config = Config 8080 "localhost" True
-  BL.putStrLn $ encodePretty config
+  BLC.putStrLn $ encodePretty config
   
   let jsonStr = "{\"port\":3000,\"host\":\"0.0.0.0\",\"debug\":false}"
   case decode jsonStr of

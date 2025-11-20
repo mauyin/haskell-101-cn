@@ -33,6 +33,8 @@
   - [练习作业](week-06-testing/exercises.md)
 
 - [Week 7: Cardano 简介 + Haskell 实践](week-07-cardano/README.md)
+  - [详细讲义](week-07-cardano/lecture.md)
+  - [练习作业](week-07-cardano/exercises.md)
 
 - [Week 8: 结课项目](week-08-project/README.md)
 

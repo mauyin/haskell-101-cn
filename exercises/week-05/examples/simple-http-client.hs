@@ -12,6 +12,7 @@ import Network.HTTP.Req
 import Data.Aeson
 import GHC.Generics
 import qualified Data.Text as T
+import Control.Monad.IO.Class (liftIO)
 
 -- JSON 响应数据类型
 data Post = Post

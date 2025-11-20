@@ -1,0 +1,46 @@
+{
+  "type": "Tx BabbageEra",
+  "description": "Cardano transaction example",
+  "id": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+  "body": {
+    "inputs": [
+      {
+        "txId": "f0e1d2c3b4a5968778695a4b3c2d1e0f9e8d7c6b5a49382716059483726150",
+        "txIndex": 0
+      },
+      {
+        "txId": "b2a19081726354b5c6d7e8f90e1d2c3b4a5968778695a4b3c2d1e0f9e8d7c6",
+        "txIndex": 1
+      }
+    ],
+    "outputs": [
+      {
+        "address": "addr_test1qr5eqq7vusq8sh7v3srgd9kn6aar8q7hfk2g4tqvzmwl9qyp43ayfvq49n3d3m7rw0jlmqec5jscq48kxdxqe0q50gxqn0tzsz",
+        "value": {
+          "lovelace": 60000000
+        }
+      },
+      {
+        "address": "addr_test1qz2fxv2umyhttkxyxp8x0dlpdt3k6cwng5pxj3jhsydzer3jcu5d8ps7zex2k2xt3uqxgjqnnj83ws8lhrn648jjxtwq2ytjqp",
+        "value": {
+          "lovelace": 19830000
+        }
+      }
+    ],
+    "fee": 170000,
+    "ttl": 8500000,
+    "certificates": [],
+    "withdrawals": {},
+    "mint": {}
+  },
+  "witnesses": {
+    "signatures": [
+      {
+        "publicKey": "a4b5c6d7e8f90e1d2c3b4a5968778695a4b3c2d1e0f9e8d7c6b5a49382716059",
+        "signature": "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b"
+      }
+    ]
+  },
+  "metadata": null
+}
+

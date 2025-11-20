@@ -7,6 +7,7 @@ Week 5 - 练习答案: 模块与项目管理
 
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Week05Exercises where
 
@@ -14,14 +15,16 @@ import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as BL
 import Data.Aeson
+import qualified Data.Aeson.Key as K
 import GHC.Generics
 import qualified Data.Text as T
 import Data.Text (Text)
-import Network.HTTP.Req
+import Network.HTTP.Req hiding (port)
 import qualified Data.Map as M
 import Data.List (nub, sort)
 import Control.Exception (try, SomeException)
 import Data.Char (toUpper)
+import Control.Monad.IO.Class (liftIO)
 
 -- ============================================================================
 -- 练习 1: 模块基础
@@ -29,7 +32,7 @@ import Data.Char (toUpper)
 
 -- 1.1 qualified import 示例
 exampleQualifiedImport :: M.Map String Int -> String -> Maybe Int
-exampleQualifiedImport = M.lookup
+exampleQualifiedImport m k = M.lookup k m
 
 -- 1.2 对列表排序并去重
 uniqueSorted :: Ord a => [a] -> [a]
@@ -132,8 +135,8 @@ data User = User
 instance FromJSON User where
   parseJSON = withObject "User" $ \v -> User
     <$> v .: "user_id"
-    <$> v .: "user_name"
-    <$> v .: "user_email"
+    <*> v .: "user_name"
+    <*> v .: "user_email"
 
 instance ToJSON User where
   toJSON user = object
@@ -226,9 +229,9 @@ fetchPage url = do
 
 extractTitle :: BL.ByteString -> Maybe String
 extractTitle content =
-  let str = BL.unpack content
-      startTag = "<title>"
-      endTag = "</title>"
+  let str = map (toEnum . fromEnum) $ BL.unpack content :: String
+      startTag = "<title>" :: String
+      endTag = "</title>" :: String
   in case (findSubstring startTag str, findSubstring endTag str) of
        (Just start, Just end) | start < end ->
          Just $ take (end - start - length startTag) $ drop (start + length startTag) str
@@ -273,7 +276,7 @@ fetchFromAPIs urls = do
 
 aggregateData :: [APIResponse] -> Value
 aggregateData responses =
-  object [ T.pack (source r) .= responseData r | r <- responses ]
+  object [ K.fromText (T.pack (source r)) .= responseData r | r <- responses ]
 
 -- ============================================================================
 -- 测试数据和测试函数

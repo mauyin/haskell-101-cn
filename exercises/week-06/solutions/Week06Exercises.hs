@@ -10,7 +10,9 @@ Week 6 - 练习答案: 错误处理与测试
 
 module Week06Exercises where
 
+import Control.Monad (forM)
 import Control.Monad.Except
+import Control.Monad.IO.Class (liftIO)
 import Control.Exception
 import Data.Typeable
 import qualified Data.Map as M
@@ -32,12 +34,12 @@ safeIndex (_:xs) n
   | otherwise = safeIndex xs (n - 1)
 
 -- 1.2 安全的除法
-data DivError = DivByZero | Overflow deriving (Show, Eq)
+data DivError = DivByZero | DivOverflow deriving (Show, Eq)
 
 safeDivide :: Int -> Int -> Either DivError Int
 safeDivide _ 0 = Left DivByZero
 safeDivide x y
-  | y < 0 && x == minBound = Left Overflow
+  | y < 0 && x == minBound = Left DivOverflow
   | otherwise = Right (x `div` y)
 
 -- 1.3 链式查询
@@ -111,8 +113,8 @@ processNumbersFile path = do
 
 -- 2.4 错误恢复
 processWithFallback :: FilePath -> FilePath -> ExceptT FileError IO [Int]
-processWithFallback primary fallback = do
-  processNumbersFile primary >>= (return . (\x -> [x]))
+processWithFallback primary fallback = 
+  (processNumbersFile primary >>= return . (\x -> [x]))
     `catchError` \_ -> do
       content <- readFileE fallback
       parseNumbers content
