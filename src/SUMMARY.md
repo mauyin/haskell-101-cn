@@ -37,6 +37,11 @@
   - [练习作业](week-07-cardano/exercises.md)
 
 - [Week 8: 结课项目](week-08-project/README.md)
+  - [实施指南](week-08-project/guide.md)
+  - [项目 1: 命令行钱包工具](week-08-project/project-1-wallet.md)
+  - [项目 2: 余额监控器](week-08-project/project-2-monitor.md)
+  - [评估标准](week-08-project/evaluation.md)
+  - [展示指南](week-08-project/showcase.md)
 
 ---
 

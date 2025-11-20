@@ -1,0 +1,59 @@
+cabal-version:      3.0
+name:               balance-monitor
+version:            0.1.0.0
+synopsis:           Cardano balance monitor tool
+description:        Automatically monitor Cardano address balances and notify on changes
+license:            MIT
+author:             Haskell 101 Student
+maintainer:         student@example.com
+category:           Blockchain
+build-type:         Simple
+
+common warnings
+    ghc-options: -Wall
+
+executable balance-monitor
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:    
+        base ^>=4.18,
+        balance-monitor
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
+library
+    import:           warnings
+    exposed-modules:  
+        Monitor.Types
+        Monitor.Query
+        Monitor.Tracker
+        Monitor.Notify
+        Monitor.Storage
+        Monitor.Config
+        Monitor.CLI
+        Monitor
+    build-depends:    
+        base ^>=4.18,
+        aeson ^>=2.1,
+        text ^>=2.0,
+        bytestring ^>=0.11,
+        req ^>=3.13,
+        time ^>=1.12,
+        containers ^>=0.6,
+        yaml ^>=0.11,
+        directory ^>=1.3,
+        filepath ^>=1.4
+    hs-source-dirs:   src
+    default-language: Haskell2010
+
+test-suite monitor-test
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          MonitorSpec.hs
+    build-depends:    
+        base ^>=4.18,
+        balance-monitor,
+        hspec ^>=2.11
+    hs-source-dirs:   test
+    default-language: Haskell2010
+
