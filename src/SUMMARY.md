@@ -25,6 +25,8 @@
   - [练习作业](week-04-monad-io/exercises.md)
 
 - [Week 5: 模块与项目管理](week-05-modules/README.md)
+  - [详细讲义](week-05-modules/lecture.md)
+  - [练习作业](week-05-modules/exercises.md)
 
 - [Week 6: 错误处理与测试](week-06-testing/README.md)
 
