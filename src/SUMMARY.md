@@ -29,6 +29,8 @@
   - [练习作业](week-05-modules/exercises.md)
 
 - [Week 6: 错误处理与测试](week-06-testing/README.md)
+  - [详细讲义](week-06-testing/lecture.md)
+  - [练习作业](week-06-testing/exercises.md)
 
 - [Week 7: Cardano 简介 + Haskell 实践](week-07-cardano/README.md)
 
