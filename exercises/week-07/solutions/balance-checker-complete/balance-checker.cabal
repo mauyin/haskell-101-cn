@@ -1,0 +1,43 @@
+cabal-version:      2.4
+name:               balance-checker
+version:            0.1.0.0
+synopsis:           Cardano Address Balance Checker - Week 7 Project 1 (Complete Solution)
+description:        Query multiple Cardano addresses and display their balances
+license:            MIT
+author:             Haskell 101 Course Team
+maintainer:         course@example.com
+build-type:         Simple
+
+library
+    exposed-modules:  API
+                    , Cache
+                    , Display
+                    , Types
+    
+    build-depends:    base ^>=4.18
+                    , aeson ^>=2.1
+                    , text ^>=2.0
+                    , bytestring ^>=0.11
+                    , req ^>=3.13
+                    , containers ^>=0.6
+                    , time ^>=1.12
+    
+    hs-source-dirs:   src
+    default-language: Haskell2010
+    
+    ghc-options:      -Wall
+
+executable balance-checker
+    main-is:          Main.hs
+    
+    build-depends:    base ^>=4.18
+                    , balance-checker
+                    , text
+                    , bytestring
+    
+    hs-source-dirs:   app
+    default-language: Haskell2010
+    
+    ghc-options:      -Wall
+                      -threaded
+

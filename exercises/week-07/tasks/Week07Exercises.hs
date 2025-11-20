@@ -7,11 +7,22 @@ Week 7 - 练习: Cardano 简介 + Haskell 实践
 - 地址操作和验证
 - 交易构建（模拟）
 
+依赖库：
+本文件需要以下库：
+- aeson: JSON 解析 (cabal install aeson)
+- text: 文本处理 (cabal install text)
+- bytestring: 字节串处理 (cabal install bytestring)
+
+或使用项目的 .cabal 文件自动安装：
+  cd balance-checker/  # 或 tx-explorer/
+  cabal build
+
 如何使用：
-1. 完成每个 TODO
-2. 在 GHCi 中测试：ghci> :load Week07Exercises.hs
-3. 运行测试函数验证实现
-4. 对照 solutions/ 中的参考答案
+1. 安装依赖（见上）
+2. 完成每个 TODO
+3. 在 GHCi 中测试：ghci> :load Week07Exercises.hs
+4. 运行测试函数验证实现
+5. 对照 solutions/ 中的参考答案
 -}
 
 {-# LANGUAGE DeriveGeneric #-}

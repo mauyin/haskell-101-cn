@@ -7,14 +7,27 @@ Week 7 - 练习: Blockfrost API 查询
 - 解析 Blockfrost API 响应
 - 错误处理和重试
 
+依赖库：
+本文件需要以下库：
+- req: HTTP 请求 (cabal install req)
+- aeson: JSON 解析 (cabal install aeson)
+- text: 文本处理 (cabal install text)
+- bytestring: 字节串处理 (cabal install bytestring)
+
+或使用项目的 .cabal 文件自动安装：
+  cd balance-checker/
+  cabal build
+
 前置条件：
-- 路径 B: 注册 Blockfrost 并获取 API Key
+- 路径 B: 注册 Blockfrost 并获取 API Key (https://blockfrost.io)
 - 或路径 A: 使用示例数据模拟
 
 如何使用：
-1. 设置 API Key (如果使用真实 API)
-2. 完成每个 TODO
-3. 在 GHCi 中测试
+1. 安装依赖（见上）
+2. 设置 API Key (如果使用真实 API)
+3. 完成每个 TODO
+4. 在 GHCi 中测试
+5. 对照 solutions/ 中的参考答案
 -}
 
 {-# LANGUAGE OverloadedStrings #-}
